@@ -1,9 +1,11 @@
 ## Tutorial -> "https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/"
 import numpy as np
 import cv2
+from imutils.video import VideoStream
 import imutils
 import time
 import argparse
+import platform
 
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
@@ -28,7 +30,9 @@ def running_on_jetson_nano():
     return platform.machine() == "aarch64"
 
 def main_loop():
-    vs = cv2.VideoCapture(get_jetson_gstreamer_source(), cv2.CAP_GSTREAMER)
+    #Check where this is running
+    if running_on_jetson_nano():
+        vs = cv2.VideoCapture(get_jetson_gstreamer_source(), cv2.CAP_GSTREAMER)
     #Main loop
     while True:
         #get stream image
