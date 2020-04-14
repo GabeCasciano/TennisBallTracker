@@ -33,6 +33,8 @@ def main_loop():
     #Check where this is running
     if running_on_jetson_nano():
         vs = cv2.VideoCapture(get_jetson_gstreamer_source(), cv2.CAP_GSTREAMER)
+    else:
+        print("Nope")
     #Main loop
     while True:
         #get stream image
