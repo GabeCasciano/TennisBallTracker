@@ -42,7 +42,7 @@ def main_loop():
         if frame is None:
             break
 
-        frame = imutils.resize(frame, width=600) # resize the image
+        frame = imutils.resize(frame, width=600, height=400) # resize the image
         blurred = cv2.GaussianBlur(frame, (11,11), 0) # apply a Gaussian blur
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
@@ -66,13 +66,6 @@ def main_loop():
                 cv2.circle(frame, center, 5, (0,0,255), -1)
 
         cv2.imshow("Frame", frame)
-        key = cv2.waitKey(1) & 0xFF
-
-        if key == ord("q"):
-            break
-
-    vs.stop()
-    vs.release()
-    cv2.destroyAllWindows()
+        key = cv2.waitKey(0)
     return
 
