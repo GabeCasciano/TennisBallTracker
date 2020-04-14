@@ -1,3 +1,4 @@
+## Tutorial -> "https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/"
 import numpy as np
 import cv2
 import imutils
@@ -45,8 +46,33 @@ def main_loop():
         blurred = cv2.GaussianBlur(frame, (11,11), 0) # apply a Gaussian blur
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
-        # Tutorial -> "https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/"
+        mask = cv2.inRange(hsv, greenLower, greenLower) # Selecting color from image based on bounds
+        mask = cv2.erode(mask, None, iterations=2) # Erode the image
+        mask = cv2.dilate(mask, None, iterations=2) #
 
+        # Find the contours on the mask and find the current center of the ball
+        contours = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours = imutils.grab_contours(contours)
+        center = None
 
+        if len(contours)>0:
+            c = max(contours, key=cv2.contoursArea)
+            ((x,y), radius) = cv2.minEnclosingCircle(c)
+            M = cv2.moments(c)
+            center = (int(M["m10"] / M["m00"]), int(M["m01"]/M["m00"]))
+
+            if radius > 10:
+                cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
+                cv2.circle(frame, center, 5, (0,0,255), -1)
+
+        cv2.imshow("Frame", frame)
+        key = cv2.waitKey(1) & 0xFF
+
+        if key == ord("q"):
+            break
+
+    vs.stop()
+    vs.release()
+    cv2.destroyAllWindows()
     return
 
