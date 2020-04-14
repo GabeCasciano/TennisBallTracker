@@ -39,9 +39,10 @@ def main_loop():
     while True:
         #get stream image
         ret, frame = vs.read()
-
+        print("Frame Capped")
         #if the image is empty break and re-try
         if frame is None:
+            print("Nope 2")
             break
 
         frame = imutils.resize(frame, width=600, height=400) # resize the image
@@ -69,5 +70,6 @@ def main_loop():
 
         cv2.imshow("Frame", frame)
         key = cv2.waitKey(0)
+        print("New Frame")
     return
 
