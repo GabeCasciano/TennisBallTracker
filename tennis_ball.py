@@ -8,7 +8,7 @@ import argparse
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
 
-def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=1280, display_height=720, framerate=60, flip_method=2):
+def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
     Return an OpenCV-compatible video source description that uses gstreamer to capture video from the camera on a Jetson Nano
     """
@@ -28,11 +28,7 @@ def running_on_jetson_nano():
     return platform.machine() == "aarch64"
 
 def main_loop():
-    #Check where this is running
-    if running_on_jetson_nano():
-        vs = cv2.VideoCapture(get_jetson_gstreamer_source(), cv2.CAP_GSTREAMER)
-    else:
-        vs = cv2.VideoCapture(0)
+    vs = cv2.VideoCapture(get_jetson_gstreamer_source(), cv2.CAP_GSTREAMER)
     #Main loop
     while True:
         #get stream image
