@@ -7,8 +7,8 @@ import time
 import argparse
 import platform
 
-hsv_lower_green = cv2.cvtColor([156, 255, 200], cv2.COLOR_BGR2HSV)
-hsv_upper_green = cv2.cvtColor([30, 156, 86], cv2.COLOR_BGR2HSV)
+hsv_lower_green = cv2.cvtColor([[[156, 255, 200]]], cv2.COLOR_BGR2HSV)
+hsv_upper_green = cv2.cvtColor([[[30, 156, 86]]], cv2.COLOR_BGR2HSV)
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
     Return an OpenCV-compatible video source description that uses gstreamer to capture video from the camera on a Jetson Nano
