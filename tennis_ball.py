@@ -47,7 +47,7 @@ def main_loop():
             break
 
         frame = imutils.resize(frame, width=600, height=400) # resize the image
-        blurred = cv2.GaussianBlur(frame, (5, 5), 0) # apply a Gaussian blur
+        blurred = cv2.GaussianBlur(frame, (15, 15), 0) # apply a Gaussian blur
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
         mask = cv2.inRange(hsv, lower, upper) # Selecting color from image based on bounds
