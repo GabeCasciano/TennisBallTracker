@@ -7,9 +7,8 @@ import time
 import argparse
 import platform
 
-tennis_ball_green = (53, 202, 241)
 lower = (25, 100, 100)
-upper = (65, 255, 255)
+upper = (67, 255, 255)
 
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
@@ -70,7 +69,7 @@ def main_loop():
                 cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
                 cv2.circle(frame, center, 5, (0,0,255), -1)
 
-        cv2.imshow("Frame", frame)
+        cv2.imshow("Ball", frame)
         cv2.imshow("Mask", mask)
         cv2.imshow("blurr", blurred)
         key = cv2.waitKey(1) & 0xFF
