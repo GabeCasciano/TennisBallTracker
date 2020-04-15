@@ -46,7 +46,7 @@ def main_loop():
             print("Nope 2")
             break
 
-        # frame = imutils.resize(frame, width=600, height=400) # resize the image
+        frame = imutils.resize(frame, width=600, height=400) # resize the image
         blurred = cv2.GaussianBlur(frame, (11,11), 0) # apply a Gaussian blur
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
@@ -60,17 +60,18 @@ def main_loop():
         center = None
 
         if len(contours)>0:
+
             c = max(contours, key=cv2.contoursArea)
             ((x,y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"]/M["m00"]))
-
+            print("Ball found at " + center)
             if radius > 10:
                 cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
                 cv2.circle(frame, center, 5, (0,0,255), -1)
 
         cv2.imshow("Frame", frame)
-        cv2.imshow("mask", blurred)
+        cv2.imshow("Mask", mask)
         key = cv2.waitKey(1) & 0xFF
 
         if key == ord("q"):
