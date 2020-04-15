@@ -7,9 +7,9 @@ import time
 import argparse
 import platform
 
-tennis_ball_green = (61, 50, 231)
-lower = (25, 86, 6)
-upper = (61, 50, 255)
+tennis_ball_green = (66, 50, 231)
+lower = (56, 100, 100)
+upper = (76, 255, 255)
 
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
