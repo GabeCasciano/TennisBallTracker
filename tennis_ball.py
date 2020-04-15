@@ -51,7 +51,7 @@ def main_loop():
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
         mask = cv2.inRange(hsv, lower, upper) # Selecting color from image based on bounds
-        mask = cv2.erode(mask, None, iterations=1) # Erode the image
+        #mask = cv2.erode(mask, None, iterations=1) # Erode the image
         mask = cv2.dilate(mask, None, iterations=2) #
 
         # Find the contours on the mask and find the current center of the ball
