@@ -61,7 +61,7 @@ def main_loop():
 
         if len(contours)>0:
 
-            c = max(contours, key=cv2.contoursArea)
+            c = max(contours, key=cv2.contourArea)
             ((x,y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"]/M["m00"]))
