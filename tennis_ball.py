@@ -65,7 +65,7 @@ def main_loop():
             ((x,y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"]/M["m00"]))
-            print("Ball found at " + center)
+           # print("Ball found at " + center)
             if radius > 10:
                 cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
                 cv2.circle(frame, center, 5, (0,0,255), -1)
