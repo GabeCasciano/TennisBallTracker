@@ -8,7 +8,7 @@ import argparse
 import platform
 
 tennis_ball_green = (53, 202, 241)
-lower = (25, 146, 190)
+lower = (25, 146, 60)
 upper = (65, 255, 255)
 
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
@@ -51,7 +51,6 @@ def main_loop():
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
         mask = cv2.inRange(hsv, lower, upper) # Selecting color from image based on bounds
-        output = cv2.bitwise_and(hsv, hsv, mask=mask)
         mask = cv2.erode(mask, None, iterations=2) # Erode the image
         mask = cv2.dilate(mask, None, iterations=2) #
 
