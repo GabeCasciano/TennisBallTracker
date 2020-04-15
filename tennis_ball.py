@@ -1,6 +1,6 @@
 ## Tutorial -> "https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/"
 import numpy as np
-import cv2
+import cv
 from imutils.video import VideoStream
 import imutils
 import time
@@ -8,8 +8,8 @@ import argparse
 import platform
 
 tennis_ball_green = (61, 50, 231)
-lower = (29, 86, 6)
-upper = (64, 255, 255)
+lower = (25, 86, 6)
+upper = (61, 50, 255)
 
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
