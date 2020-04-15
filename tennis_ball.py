@@ -72,7 +72,7 @@ def main_loop():
 
         cv2.imshow("Frame", frame)
         cv2.imshow("Mask", mask)
-        cv2.imshow("Output", output)
+        #cv2.imshow("Output", output)
         key = cv2.waitKey(1) & 0xFF
 
         if key == ord("q"):
