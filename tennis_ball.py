@@ -7,9 +7,10 @@ import time
 import argparse
 import platform
 
-greenLower = (72, 36, 100)
-greenUpper = (64, 255, 255)
-
+greenLower = np.uint8([[[156, 255, 200]]])
+hsv_lower_green = cv2.cvtColor(greenLower, cv2.COLOR_BGR2HSV)
+greenUpper = np.uint8([[[30, 156, 86]]])
+hsv_upper_green = cv2.cvtColor(greenUpper, cv2.COLOR_BGR2HSV)
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
     Return an OpenCV-compatible video source description that uses gstreamer to capture video from the camera on a Jetson Nano
@@ -49,7 +50,7 @@ def main_loop():
         blurred = cv2.GaussianBlur(frame, (11,11), 0) # apply a Gaussian blur
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
-        mask = cv2.inRange(hsv, greenLower, greenLower) # Selecting color from image based on bounds
+        mask = cv2.inRange(hsv, hsv_lower_green, hsv_upper_green) # Selecting color from image based on bounds
         mask = cv2.erode(mask, None, iterations=2) # Erode the image
         mask = cv2.dilate(mask, None, iterations=2) #
 
