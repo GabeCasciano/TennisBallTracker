@@ -69,8 +69,15 @@ def main_loop():
                 cv2.circle(frame, center, 5, (0,0,255), -1)
 
         cv2.imshow("Frame", frame)
-        key = cv2.waitKey(0)
-        print("New Frame")
+        key = cv2.waitKey(0) & 0xFF
+
+        if key == ord("q"):
+            print("Quit")
+            break
+
+    vs.stop()
+    vs.release()
+    cv2.destroyAllWindows()
     return
 
-main_loop()
+main_loop() # run main
