@@ -69,7 +69,7 @@ def main_loop():
                 cv2.circle(frame, center, 5, (0,0,255), -1)
 
         cv2.imshow("Frame", frame)
-        cv2.imshow("mask", mask)
+        cv2.imshow("mask", blurred)
         key = cv2.waitKey(1) & 0xFF
 
         if key == ord("q"):
