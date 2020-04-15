@@ -52,7 +52,7 @@ def main_loop():
 
         mask = cv2.inRange(hsv, lower, upper) # Selecting color from image based on bounds
         #mask = cv2.erode(mask, None, iterations=1) # Erode the image
-        mask = cv2.dilate(mask, None, iterations=2) #
+        mask = cv2.dilate(mask, None, iterations=1) #
 
         # Find the contours on the mask and find the current center of the ball
         contours = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
