@@ -1,6 +1,6 @@
 ## Tutorial -> "https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/"
 import numpy as np
-import cv
+import cv2
 from imutils.video import VideoStream
 import imutils
 import time
