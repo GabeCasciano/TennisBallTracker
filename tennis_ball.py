@@ -8,8 +8,8 @@ import argparse
 import platform
 
 tennis_ball_green = (53, 202, 241)
-lower = (40, 100, 6)
-upper = (65, 255, 255)
+lower = (30, 100, 6)
+upper = (55, 255, 255)
 
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
