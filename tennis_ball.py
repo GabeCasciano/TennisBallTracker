@@ -49,9 +49,10 @@ def main_loop():
         blurred = cv2.GaussianBlur(frame, (15, 15), 0) # apply a Gaussian blur
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
+        kernel = np.ones((5,5), np.uint8)
         mask = cv2.inRange(hsv, lower, upper) # Selecting color from image based on bounds
         #mask = cv2.erode(mask, None, iterations=3) # Erode the image
-        mask = cv2.dilate(mask, None, iterations=4) #
+        mask = cv2.dilate(mask, kernel, iterations=1) #
 
         # Find the contours on the mask and find the current center of the ball
         contours = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
