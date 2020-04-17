@@ -8,7 +8,7 @@ import argparse
 import platform
 
 lower = (23, 75, 75)
-upper = (67, 255, 255)
+upper = (65, 255, 255)
 
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
     """
@@ -46,14 +46,14 @@ def main_loop():
             break
 
         frame = imutils.resize(frame, width=600, height=400) # resize the image
-        blurred = cv2.GaussianBlur(frame, (15, 15), 0) # apply a Gaussian blur
+        blurred = cv2.GaussianBlur(frame, (9,9), 0) # apply a Gaussian blur
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV) # convert to HSV color space
 
-        kernel = np.ones((5,5), np.uint8)
+        kernel = np.ones((2,2), np.uint8)
         mask = cv2.inRange(hsv, lower, upper) # Selecting color from image based on bounds
 
-        diliated = cv2.dilate(mask, kernel, iterations=4) #
-        erroded = cv2.erode(diliated, kernel, iterations=2)  # Erode the image
+        diliated = cv2.dilate(mask, kernel, iterations=2) #
+        erroded = cv2.erode(diliated, kernel, iterations=1)  # Erode the image
 
         # Find the contours on the mask and find the current center of the ball
         contours = cv2.findContours(erroded.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
