@@ -52,11 +52,11 @@ def main_loop():
         kernel = np.ones((5,5), np.uint8)
         mask = cv2.inRange(hsv, lower, upper) # Selecting color from image based on bounds
 
-        mask = cv2.dilate(mask, kernel, iterations=4) #
-        mask = cv2.erode(mask, kernel, iterations=2)  # Erode the image
+        diliated = cv2.dilate(mask, kernel, iterations=4) #
+        erroded = cv2.erode(diliated, kernel, iterations=2)  # Erode the image
 
         # Find the contours on the mask and find the current center of the ball
-        contours = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours = cv2.findContours(erroded.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         contours = imutils.grab_contours(contours)
         center = None
 
@@ -73,6 +73,8 @@ def main_loop():
 
         cv2.imshow("Ball", frame)
         cv2.imshow("Mask", mask)
+        cv2.imshow("Erroded", erroded)
+        cv2.imshow("Dialated", diliated)
         cv2.imshow("blurr", blurred)
         key = cv2.waitKey(1) & 0xFF
 
