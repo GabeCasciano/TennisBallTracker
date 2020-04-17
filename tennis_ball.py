@@ -7,7 +7,7 @@ import time
 import argparse
 import platform
 
-lower = (25, 100, 100)
+lower = (23, 75, 75)
 upper = (67, 255, 255)
 
 def get_jetson_gstreamer_source(capture_width=1280, capture_height=720, display_width=640, display_height=480, framerate=60, flip_method=2):
